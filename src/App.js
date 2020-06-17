@@ -20,9 +20,9 @@ const commands = {
         method: 'post',
         url: 'https://cors-anywhere.herokuapp.com/https://rcon-express.herokuapp.com/',
         data: qs.stringify({
-          host: '18.230.97.82',
-          port: '27015',
-          pass: 'SomosChoborra',
+          host: 'your-ip',
+          port: 'your-port',
+          pass: 'your-password',
           command: 'status'
         }),
         headers: {
