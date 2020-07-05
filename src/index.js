@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Console from './Console.js';
+import Login from './Login.js';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Console />
+    <Login />
   </React.StrictMode>,
   document.getElementById('root')
 );

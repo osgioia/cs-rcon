@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -9,6 +9,11 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function Copyright() {
   return (
@@ -41,6 +46,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginIn() {
   const classes = useStyles();
+  const [server, setServer] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const submitForm = () => {
+    if (server === "" || password === "") {
+      setError("Fields are required");
+      return;
+    }
+    console.log(server, password);
+  };
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,6 +77,8 @@ export default function LoginIn() {
             name="server"
             autoComplete="email"
             autoFocus
+            value={server}
+            onChange={e => setServer(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -70,6 +89,8 @@ export default function LoginIn() {
             label="Password"
             type="password"
             id="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             autoComplete="current-password"
           />
           <FormControlLabel
@@ -82,10 +103,18 @@ export default function LoginIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={submitForm}
           >
             Login In
           </Button>
           
+           {error && (
+        <Alert severity="error" onClick={() => setError(null)}>
+                  
+                  </Alert>
+      )}
+
+
         </form>
       </div>
       <Box mt={8}>
